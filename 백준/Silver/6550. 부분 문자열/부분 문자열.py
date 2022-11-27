@@ -13,6 +13,6 @@ while True:
       print('No')
     else:
       print('Yes')
-      ''
+ 
   except:
     break
