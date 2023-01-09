@@ -1,25 +1,26 @@
 function solution(keyinput, board) {
     let x = 0;
     let y = 0;
-    
-    const range = 
-          [ Math.abs( Math.floor(board[0] / 2) ), 
-           Math.abs( Math.floor(board[1] / 2) ) ];
-    
-    for(let k of keyinput){
-        switch(k){
-            case "left": x--; break;
-            case "right": x++; break;
-            case "down": y--; break;
-            case "up": y++; break;
+    let result = [];
+    for (let i = 0; i < keyinput.length; i++) {
+        if (Math.abs(x) < Math.floor(board[0]/2)) {
+            if (keyinput[i] === "left") {
+                x -= 1;
+            }
+            if (keyinput[i] === "right") {
+                x += 1;
+            }
+        }
+        
+        if (Math.abs(y) < Math.floor(board[1]/2)) {
+            if (keyinput[i] === "up") {
+                y += 1;
+            }
+            if (keyinput[i] === "down") {
+                y -= 1;
+            }
         }
 
-        if(Math.abs(x)>range[0]){
-            x = x > 0 ? range[0] : range[0] * -1;
-         }
-        if(Math.abs(y)>range[1]){
-            y = y > 0 ? range[1] : range[1] * -1;
-        }
     }
-    return [x,y];
+    return result.concat([x,y]);
 }
