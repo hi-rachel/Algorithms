@@ -1,4 +1,1 @@
-function solution(phone_number){
-  let result = "*".repeat(phone_number.length - 4) + phone_number.slice(-4);
-  return result;
-}
+const solution = n => [...n].fill("*",0,n.length-4).join("")
