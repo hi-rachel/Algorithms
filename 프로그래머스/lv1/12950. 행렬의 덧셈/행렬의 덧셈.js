@@ -1,11 +1,3 @@
 function solution(arr1, arr2) {
-    let result = [];
-    for (let i = 0; i < arr1.length; i++) {
-        let sum = [];
-        for (let j = 0; j < arr1[i].length; j++) {
-            sum.push(arr1[i][j] + arr2[i][j]);
-        }
-        result.push(sum);
-    }
-    return result;
+    return arr1.map((list1, list2) => list1.map((num, idx) => num + arr2[list2][idx]));
 }
