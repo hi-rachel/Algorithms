@@ -1,12 +1,8 @@
 function solution(n) {
     let count = 0;
-    for (let i = 1; i < n/2 + 1; i++) {
-        const sum = i * (i + 1) / 2;
-        const sub = n - sum;
-        if (sub < 0) break;
-        if (sub % i === 0) {
-            count++;
-        }
+    for (let i = 0; i <= n; i++) {
+        // i는 n의 약수이면서 홀수인 개수
+        if (n % i == 0 && i % 2 == 1) count++;
     }
     return count;
 }
