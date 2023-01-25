@@ -8,6 +8,6 @@ function solution(citations) {
     let answer = sorted.filter((element, index) => element > index).length;
     
     // // 0, 1 => 내림차순 1, 0 일 때 문제
-    if (sorted[0] == 1 && sorted[1] == 0) return answer++;
-    else return answer;
+    // if (sorted[0] == 1 && sorted[1] == 0) return answer++;
+    return answer;
 }
