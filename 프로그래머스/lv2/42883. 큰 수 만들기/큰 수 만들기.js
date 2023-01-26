@@ -1,12 +1,12 @@
 function solution(number, k) {
-    let answer = [];
+    let arr = [];
     for (let i = 0; i < number.length; i++) {
-        while (answer.length > 0 && answer[answer.length -1] < number[i] && k > 0) {
+        while (arr.length > 0 && arr[arr.length -1] < number[i] && k > 0) {
             k--;
-            answer.pop();
+            arr.pop();
         }
-        answer.push(number[i]);
+        arr.push(number[i]);
     }
-    answer.splice(number.length - k, k);
-    return answer.join('');
+    arr.splice(number.length - k, k);
+    return arr.join('');
 }
