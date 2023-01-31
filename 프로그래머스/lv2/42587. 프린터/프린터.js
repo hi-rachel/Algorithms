@@ -8,14 +8,13 @@ function solution(priorities, location) {
         
         if (n === max) {
             cnt++;
-            if (location === 0) {
-                return cnt;
-            }
+            if (location === 0) return cnt;
         } else {
             priorities.push(n);
         }
         location--;
-        if (location == -1) {
+        
+        if (location === -1) {
             location = priorities.length - 1;
         }
     }
