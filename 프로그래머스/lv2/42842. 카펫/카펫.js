@@ -1,7 +1,8 @@
 function solution(brown, yellow) {
     let sum = brown + yellow;
     
-    for (let h = 3; h <= brown; h++) {
+    // 카펫의 최소높이 3
+    for (let h = 3; h < Math.floor(brown/2); h++) {
         if (sum % h === 0) {
             let w = sum / h;
             
