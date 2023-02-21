@@ -1,15 +1,17 @@
 function solution(arr1, arr2) {
     let answer = [];
+
     for (let i = 0; i < arr1.length; i++) {
-        let result = [];
+        let resultArr = [];
         for (let j = 0; j < arr2[0].length; j++) {
-            let elem = 0;
+            let result = 0;
             for (let k = 0; k < arr2.length; k++) {
-                elem += arr1[i][k] * arr2[k][j];
+                result += arr1[i][k] * arr2[k][j];
             }
-            result.push(elem);
+            resultArr.push(result);
         }
-        answer.push(result);
+        answer.push(resultArr);
     }
     return answer;
 }
+
