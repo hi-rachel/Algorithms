@@ -1,24 +1,19 @@
-function solution(book_time) {
-    book_time.sort();
-    
-    const room = [];
-    
-    book_time.forEach((t) => {
-        const tmp = t[0].split(':');
-        
-        const startTime = Number(tmp[0]) * 60 + Number(tmp[1]);
-        
-        const idx = room.findIndex((e) => e <= startTime);
-        
-        if (idx === -1) room.push(getNextTime(t[1]));
-        else room[idx] = getNextTime(t[1]);
-    });
-    
-    return room.length;
+function makeMinStamp(time) {
+    const [hour, min] = time.split(":").map(v => Number(v));
+    return hour * 60 + min;
 }
 
-function getNextTime(endTime) {
-    const next = endTime.split(':');
+function solution(book_time) {
+    const timeArr = Array.from({length: makeMinStamp('23:59') + 10}, () => 0);
     
-    return Number(next[0] * 60 + Number(next[1]) + 10);
+    book_time.forEach((time, i) => {
+        const [s, e] = time;
+        let start = makeMinStamp(s);
+        const end = makeMinStamp(e) + 9;
+        
+        for (start; start <= end; start++) {
+            timeArr[start]++;
+        }
+    });
+    return Math.max(...timeArr);
 }
