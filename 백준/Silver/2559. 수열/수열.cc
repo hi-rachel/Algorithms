@@ -5,7 +5,7 @@ int N, K, temp, psum[100000], ret = -100004;
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL); cout.tie(NULL);
-    cin >> N >> K;;
+    cin >> N >> K;
     for(int i = 1; i <= N; i++){
         cin >> temp;
         psum[i] = psum[i-1] + temp;
