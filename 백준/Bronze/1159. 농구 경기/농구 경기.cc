@@ -1,18 +1,18 @@
 #include <bits/stdc++.h>
 using namespace std;
+int n, a[26];
+string s, ret;
 
-int N, p[26];
-string s, ans;
 int main(){
-    cin >> N;
-    for(int i = 0; i < N; i++){
+    cin >> n;
+    for(int i = 0; i < n; i++){
         cin >> s;
-        p[s[0] - 'a']++;
+        a[s[0] - 'a']++;
     }
     for(int i = 0; i < 26; i++){
-        if(p[i] >= 5) ans += (i + 'a');
+        if(a[i] >= 5) ret += i + 'a';
     }
-    if(ans.size()) cout << ans << '\n';
+    if(ret.length()) cout << ret << '\n';
     else cout << "PREDAJA" << '\n';
     return 0;
 }
