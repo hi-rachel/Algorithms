@@ -1,21 +1,18 @@
 #include <bits/stdc++.h>
 using namespace std;
-
 int n;
-string p, s, pre, suf;
-
+string p, a;
 int main(){
     cin >> n;
     cin >> p;
-    int m = p.find('*');
-    pre = p.substr(0, m);
-    suf = p.substr(m + 1);
+    int idx = p.find('*');
+    string pre = p.substr(0, idx);
+    string suf = p.substr(idx + 1);
     for(int i = 0; i < n; i++){
-        cin >> s;
-        if(pre.size() + suf.size() > s.size()){
-            cout << "NE\n";
-        } else {
-            if(pre == s.substr(0, pre.size()) && suf == s.substr(s.size() - suf.size())) cout << "DA\n";
+        cin >> a;
+        if(pre.size() + suf.size() > a.size()) cout << "NE\n";
+        else{
+            if(pre == a.substr(0, pre.size()) && suf == a.substr(a.size() - suf.size())) cout << "DA\n";
             else cout << "NE\n";
         }
     }
