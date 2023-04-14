@@ -5,9 +5,7 @@ function solution(name, yearning, photo) {
         let ans = 0;
         for(let j = 0; j < test.length; j++){
             let idx = name.indexOf(test[j]);
-            if(idx >= 0) {
-                ans += yearning[idx];
-            }
+            if(idx >= 0) ans += yearning[idx];
         }
         result.push(ans);
         ans = 0;
