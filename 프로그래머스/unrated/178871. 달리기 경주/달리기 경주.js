@@ -1,17 +1,16 @@
 function solution(players, callings) {
-    const playerMap = {};
+    const mp = {};
     for(let i = 0; i < players.length; i++){
-        playerMap[players[i]] = i;
+        mp[players[i]] = i; 
     }
     for(let i = 0; i < callings.length; i++){
-        const idx = playerMap[callings[i]];
-        const temp = players[idx-1];
-        
+        let idx = mp[callings[i]];
+        let temp = players[idx-1];
         players[idx-1] = callings[i];
         players[idx] = temp;
         
-        playerMap[callings[i]] = idx - 1;
-        playerMap[temp] = idx;
+        mp[callings[i]] = idx - 1;
+        mp[temp] = idx;
     }
     return players;
 }
