@@ -1,12 +1,21 @@
 function solution(land) {
-    var answer = 0;
-
-    return Math.max(...land.reduce((a, c) => {
-        return [
-            c[0] + Math.max(a[1], a[2], a[3]),  
-            c[1] + Math.max(a[0], a[2], a[3]),
-            c[2] + Math.max(a[0], a[1], a[3]),
-            c[3] + Math.max(a[0], a[1], a[2]),
-        ];
-    }, [0, 0, 0, 0]));
+    let ans = [];
+    for(let i = 1; i < land.length; i++){
+        let p = land[i -1];
+        let c = land[i];
+        c[0] += Math.max(
+            p[1], p[2], p[3]
+        );
+        c[1] += Math.max(
+            p[0], p[2], p[3]
+        );
+        c[2] += Math.max(
+            p[0], p[1], p[3]
+        )
+        c[3] += Math.max(
+            p[0], p[1], p[2]
+        )
+        ans = land[land.length-1];
+    }
+    return Math.max(...ans);
 }
