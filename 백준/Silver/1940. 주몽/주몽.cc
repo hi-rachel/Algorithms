@@ -1,20 +1,18 @@
 #include <bits/stdc++.h>
 using namespace std;
-int n, m, a, g[15004], ans;
+int n, m, p[100004], cnt;
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL); cout.tie(NULL);
     cin >> n >> m;
     for(int i = 0; i < n; i++){
-        cin >> g[i];
+        cin >> p[i];
     }
     for(int i = 0; i < n; i++){
-        for(int j = i + 1; j < n; j++){
-            if(g[i] + g[j] == m){
-                ans++;
-            }
+        for(int j = i+1; j < n; j++){
+            if(p[i]+p[j] == m) cnt++;
         }
     }
-    cout << ans << '\n';
+    cout << cnt << '\n';
     return 0;
 }
