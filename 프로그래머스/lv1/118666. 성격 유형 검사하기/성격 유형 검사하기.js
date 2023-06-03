@@ -19,22 +19,10 @@ function solution(survey, choices) {
     for(let i = 0; i < choices.length; i++){
         if(choices[i] < 4) {
             // 비동의
-            if(choices[i] == 1){
-                scores[survey[i].split('')[0]] += 3;
-            } else if (choices[i] == 2){
-                scores[survey[i].split('')[0]] += 2;
-            } else if (choices[i] == 3) {
-                scores[survey[i].split('')[0]] += 1;
-            }
+            scores[survey[i].split('')[0]] += Math.abs(choices[i] - 4);
         } else if (choices[i] > 4) {
             // 동의
-            if(choices[i] == 7){
-                scores[survey[i].split('')[1]] += 3;
-            } else if (choices[i] == 6){
-                scores[survey[i].split('')[1]] += 2;
-            } else if (choices[i] == 5) {
-                scores[survey[i].split('')[1]] += 1;
-            }
+            scores[survey[i].split('')[1]] += Math.abs(choices[i] - 4);
         } 
     }
     function higher(type1, type2){
