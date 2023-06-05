@@ -1,7 +1,6 @@
 function solution(num_list) {
     let cnt = 0;
-    for(let i = 0; i < num_list.length; i++){
-        let num = num_list[i];
+    num_list.forEach((num) => {
         while(num != 1){
              if(num % 2 != 0){
                 num -= 1;
@@ -10,6 +9,6 @@ function solution(num_list) {
                     cnt++;
                 }
             }
-        }
+    })
     return cnt;
 }
