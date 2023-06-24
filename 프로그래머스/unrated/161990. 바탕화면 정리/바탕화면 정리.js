@@ -1,14 +1,16 @@
 function solution(wallpaper) {
-    let [lux, luy, rdx, rdy] = [50, 50, 0, 0];
-    wallpaper.forEach((line, i) => {
-      [...line].forEach((file, j) => {
-          if(file === "#"){
-              lux = Math.min(lux, i);
-              luy = Math.min(luy, j);
-              rdx = Math.max(rdx, i+1);
-              rdy = Math.max(rdy, j+1);
+        let [x1, y1, x2, y2] = [wallpaper.length, wallpaper[0].length, 0, 0];
+        // x1 => min i
+        // x2 => max i
+        // y1 => min idx
+        // y2 => max idx
+        wallpaper.forEach((paper, i) => {
+          if (paper.includes('#')) {
+            x1 = Math.min(x1, i);
+            y1 = Math.min(y1, paper.indexOf('#'));
+            x2 = Math.max(x2, i);
+            y2 = Math.max(y2, paper.lastIndexOf('#'));
           }
-        })
-    })
-    return [lux, luy, rdx, rdy];
-}
+        });
+        return [x1, y1, x2 + 1, y2 + 1];
+      }
