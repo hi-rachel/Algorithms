@@ -4,8 +4,6 @@ balls = [*range(1, n+1)]
 
 for _ in range(m):
   i, j = map(int, input().split())
-  temp = balls[i-1:j]
-  temp.reverse()
-  balls[i-1:j] = temp
+  balls[i-1:j] = balls[i-1:j][::-1]
 
 print(*balls)
