@@ -1,6 +1,1 @@
-while True:
-    try:
-        a = input()
-        print(a)
-    except:
-        break
+print(open(0).read())
