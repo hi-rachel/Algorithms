@@ -1,29 +1,16 @@
+grade_list = ['A+', 'A0', 'B+', 'B0', 'C+', 'C0', 'D+', 'D0', 'F']
+scores_list = [4.5, 4.0, 3.5, 3.0, 2.5, 2.0, 1.5, 1.0, 0.0]
+
 sum = 0
 major = 0
 
 for n in range(20):
   name, scores, grade = input().split()
   scores = float(scores)
+  
   if grade == 'P':
     continue;
-  if grade == 'A+':
-    major += 4.5 * scores
-  if grade == 'A0':
-    major += 4.0 * scores
-  if grade == 'B+':
-    major += 3.5 * scores
-  if grade == 'B0':
-    major += 3.0 * scores
-  if grade == 'C+':
-    major += 2.5 * scores
-  if grade == 'C0':
-    major += 2.0 * scores
-  if grade == 'D+':
-    major += 1.5 * scores
-  if grade == 'D0':
-    major += 1.0 * scores
-  if grade == 'F':
-    major += 0.0 * scores
+  major += scores * scores_list[grade_list.index(grade)]
   sum += scores
 
 if sum != 0:
