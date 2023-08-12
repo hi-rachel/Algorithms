@@ -1,10 +1,8 @@
-t = int(input())
-
-for _ in range(t):
-  h, w, n = map(int, input().split())
-  num = n//h + 1
-  floor = n % h
-  if n % h == 0:
-    num = n//h
-    floor = h
-  print(f'{floor*100+num}')
+import sys
+vc = int(sys.stdin.readline())
+for i in range(vc):
+    vh, vw, vn = map(int, sys.stdin.readline().split())
+    if vn%vh == 0:
+        print(vh*100 + vn//vh)
+    else:
+        print(vn%vh*100 + vn//vh +1)
