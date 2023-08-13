@@ -1,8 +1,5 @@
-T = int(input())
-
-for _ in range(T):
+import sys
+input = sys.stdin.readline
+for _ in range(int(input())):
   statement = input().split()
-  result = ""
-  for word in statement:
-    result += ''.join(reversed(word)) + ' '
-  print(result)
+  print(' '.join(statement[::-1])[::-1])
