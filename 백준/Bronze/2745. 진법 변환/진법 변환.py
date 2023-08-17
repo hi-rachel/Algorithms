@@ -1,3 +1,2 @@
-b, n = input().split()
-result = int(str(b), int(n))
-print(result)
+n, b = input().split()
+print(int(str(n), int(b)))
