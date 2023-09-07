@@ -1,40 +1,52 @@
 from collections import deque
+
 import sys
 input = sys.stdin.readline
 
-N, M = map(int, input().split())
+# 지도는 n, m다름 (정방행렬 X)
+n, m = map(int, input().split())
 
 graph = []
-for _ in range(N):
+
+# 지도 초기화
+for _ in range(n):
     graph.append(list(map(int, input().split())))
 
-dist = [[-1] * M for _ in range(N)]
+# 거리 입력 할 리스트
+distance = [[-1]*m for _ in range(n)]
 
-q = deque()
-
-for y in range(N):
-    for x in range(M):
-        if graph[y][x] == 2:
-            target = [y, x]
-            q.append(target)
+# 목표 지점 찾기(2인 값)
+for i in range(n):
+    for j in range(m):
+        if graph[i][j] == 2:
+            target = (i,j)
             break
+    
 
-dist[target[0]][target[1]] = 0
+q = deque([target])
+distance[target[0]][target[1]] = 0
 
 while q:
-    ey, ex = q.popleft()
+    x, y = q.popleft();
 
-    for dy, dx in [[0, -1], [0, 1], [-1, 0], [1, 0]]:
-        ny, nx = ey + dy, ex + dx
-        if 0 <= ny < N and 0 <= nx < M:
-            if graph[ny][nx] == 1 and dist[ny][nx] == -1:
-                dist[ny][nx] = dist[ey][ex] + 1
-                q.append([ny, nx])
+    # 상 하 좌 우 
+    for dx, dy in [(-1,0), (1,0), (0, -1), (0, 1)]:
+        nx = x + dx
+        ny = y + dy
 
-for y in range(N):
-    for x in range(M):
-        if graph[y][x] == 0:
+        # 인덱스 범위 체크
+        if nx < 0 or nx >=n or ny <0 or ny >=m:
+            continue
+        
+        # 갈 수 있는 땅(1) and 방문하지 않은 곳
+        if graph[nx][ny] == 1 and distance[nx][ny] == -1:
+            distance[nx][ny] = distance[x][y] + 1
+            q.append((nx, ny))
+
+for i in range(n):
+    for j in range(m):
+        if graph[i][j] == 0:
             print(0, end=' ')
         else:
-            print(dist[y][x], end=' ')
+            print(distance[i][j], end=' ')
     print()
