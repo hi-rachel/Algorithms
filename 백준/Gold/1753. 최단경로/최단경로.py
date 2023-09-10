@@ -1,29 +1,28 @@
-from collections import deque
 import heapq
-N, M = map(int, input().split())
+import sys
+input = sys.stdin.readline
 
-start = int(input())
+v, e = map(int, input().split())
+k = int(input())
 
-links = [[] for _ in range(N + 1)]
-dist = [1e9 for _ in range(N + 1)]
+links = [[] for _ in range(v + 1)]
+dist = [1e9 for _ in range(v + 1)]
 
-for _ in range(M):
-    A, B, C = map(int, input().split())
-    links[A].append([B, C])
-
+for _ in range(e):
+    u, v, w = map(int, input().split())
+    links[u].append([v, w])
+    
 q = []
-heapq.heappush(q, [0, start])
-dist[start] = 0
+heapq.heappush(q, [0, k])
+dist[k] = 0
 
 while q:
     _w, node = heapq.heappop(q)
+    
     for nxt, weight in links[node]:
         if dist[node] + weight < dist[nxt]:
             dist[nxt] = dist[node] + weight
             heapq.heappush(q, [dist[nxt], nxt])
 
 for i in range(1, len(dist)):
-    if dist[i] == 1e9:
-        print('INF')
-    else:
-        print(dist[i])
+    print('INF') if dist[i] == 1e9 else print(dist[i])
