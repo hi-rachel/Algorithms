@@ -10,6 +10,8 @@ for _ in range(n):
     coins.append(int(input()))
 
 for _ in range(n):
+    if k == 0:
+        break
     coin = coins.pop()
     if k // coin > 0:
         cnt += k // coin
