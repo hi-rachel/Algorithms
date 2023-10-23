@@ -6,4 +6,4 @@ for i in range(l):
     cur = a[i] - 96
     result += cur * (31**i)
 
-print(result)
+print(result % 1234567891)
