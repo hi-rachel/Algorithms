@@ -10,11 +10,11 @@ for _ in range(n):
     coins.append(int(input()))
 
 for _ in range(n):
-    if k == 0:
-        break
     coin = coins.pop()
-    while k >= coin:
-        k -= coin
-        cnt += 1
+    if k // coin > 0:
+        cnt += k // coin
+        k = k % coin
+    else:
+        continue
 
 print(cnt)
