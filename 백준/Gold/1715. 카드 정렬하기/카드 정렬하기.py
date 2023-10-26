@@ -14,11 +14,10 @@ if len(cards) == 1:
     exit()
 
 cards_num = 0
-while len(cards):
+while True:
     sum = 0
     sum += heappop(cards)
-    if cards:
-        sum += heappop(cards)
+    sum += heappop(cards)
     cards_num += sum
     if len(cards) == 0:
         break
