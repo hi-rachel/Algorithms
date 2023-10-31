@@ -1,14 +1,14 @@
-import sys
 from collections import deque
+import sys
 
 input = sys.stdin.readline
 
-N, M, V = map(int, input().split())
+n, m, v = map(int, input().split())
 
-graph = [[] for _ in range(N + 1)]
-visited = [0 for _ in range(N + 1)]
+graph = [[] for _ in range(n + 1)]
+visited = [0 for _ in range(n + 1)]
 
-for _ in range(M):
+for _ in range(m):
     a, b = map(int, input().split())
     graph[a].append(b)
     graph[b].append(a)
@@ -16,28 +16,28 @@ for _ in range(M):
 for i in graph:
     i.sort()
 
-def recur(node):
+def dfs(node):
     visited[node] = 1
     print(node, end=" ")
     for nxt in graph[node]:
-        if visited[nxt] == 1:
-            continue
-        recur(nxt)
+        if visited[nxt] != 1:
+            dfs(nxt)
 
-recur(V)
+dfs(v)
 print()
 
-visited = [0 for _ in range(N + 1)]
+visited = [0 for _ in range(n + 1)]
 
-q = deque()
-q.append(V)
-visited[V] = 1
+def bfs(node):
+    q = deque()
+    q.append(node)
+    visited[node] = 1
+    while q:
+        now = q.popleft()
+        print(now, end=" ")
+        for nxt in graph[now]:
+            if visited[nxt] != 1:
+                visited[nxt] = 1
+                q.append(nxt)
 
-while len(q) > 0:
-    node = q.popleft()
-    print(node, end=" ")
-    for nxt in graph[node]:
-        if visited[nxt] == 1:
-            continue
-        visited[nxt] = 1
-        q.append(nxt)
+bfs(v)
