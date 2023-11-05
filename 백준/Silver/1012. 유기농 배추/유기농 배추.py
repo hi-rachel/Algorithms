@@ -1,4 +1,6 @@
 from collections import deque
+import sys
+input = sys.stdin.readline
 
 t = int(input())
 
@@ -16,7 +18,7 @@ def BFS(x, y):
             nx = x + dx[i]
             ny = y + dy[i]
 
-            if nx < 0 or ny < 0 or nx >= m or ny >= n:
+            if nx < 0 or ny < 0 or nx >= n or ny >= m:
                 continue
 
             if graph[nx][ny] == 0:
@@ -26,18 +28,17 @@ def BFS(x, y):
                 queue.append((nx, ny))
                 graph[nx][ny] = 0
 
-
 for _ in range(t):
     m, n, k = map(int, input().split())
-    graph = [[0] * n for _ in range(m)]
+    graph = [[0] * m for _ in range(n)]
     cnt = 0
 
     for _ in range(k):
-        x, y = map(int, input().split())
+        y, x = map(int, input().split())
         graph[x][y] = 1
 
-    for i in range(m):
-        for j in range(n):
+    for i in range(n):
+        for j in range(m):
             if graph[i][j] == 1:
                 BFS(i, j)
                 cnt += 1
