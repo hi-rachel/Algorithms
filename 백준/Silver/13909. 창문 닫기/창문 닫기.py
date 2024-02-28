@@ -1,11 +1,3 @@
 import sys
-input = sys.stdin.readline
-
-n = int(input())
-result = 0
-x = 1
-while x * x <= n:
-    x += 1
-    result += 1
-    
-print(result)
+n = int(sys.stdin.readline())
+print(int(n**0.5))
