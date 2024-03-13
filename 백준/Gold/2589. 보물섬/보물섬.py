@@ -1,33 +1,36 @@
 from collections import deque
 import sys
-
 input = sys.stdin.readline
 
-Y, X = map(int, input().split())
-graph = [list(input().rstrip()) for _ in range(Y)]
-maxi = 0
+y_size, x_size = map(int, input().split())
 
-for y in range(Y):
-    for x in range(X):
-        if graph[y][x] == "L":
-            visited = [[0 for _ in range(X)] for _ in range(Y)]
-            dist = [[0 for _ in range(X)] for _ in range(Y)]
+x_map = [list(input().rstrip()) for _ in range(y_size)]
 
-            q = deque()
-            q.append([y, x])
-            visited[y][x] = 1
+dy = [-1, 1, 0, 0]
+dx = [0, 0, -1, 1]
 
-            while q:
-                ey, ex = q.popleft()
+max_distance = 0
 
-                for dy, dx in [[0, 1], [1, 0], [-1, 0], [0, -1]]:
-                    ny, nx = ey + dy, ex + dx
-                    if 0 <= ny < Y and 0 <= nx < X:
-                        if graph[ny][nx] == "L":
-                            if visited[ny][nx] == 0:
-                                visited[ny][nx] = 1
-                                dist[ny][nx] = dist[ey][ex] + 1
-                                maxi = max(maxi, dist[ny][nx])
-                                q.append([ny, nx])
+for i in range(y_size):
+    for j in range(x_size):
+        if x_map[i][j] == 'L':
+            visited = [[0 for _ in range(x_size)] for _ in range(y_size)] # 방문 기록
+            dist = [[0 for _ in range(x_size)] for _ in range(y_size)] # 거리 기록
+            queue = deque()
+            queue.append([i, j])
+            visited[i][j] = 1
 
-print(maxi)
+            while queue:
+                y, x = queue.popleft()
+
+                for k in range(4):
+                    ny = y + dy[k]
+                    nx = x + dx[k]
+                    if 0 <= ny < y_size and 0 <= nx < x_size:
+                        if x_map[ny][nx] == 'L' and visited[ny][nx] == 0:
+                            queue.append([ny, nx])
+                            visited[ny][nx] = 1
+                            dist[ny][nx] = dist[y][x] + 1
+                            max_distance = max(max_distance, dist[ny][nx])
+
+print(max_distance)
