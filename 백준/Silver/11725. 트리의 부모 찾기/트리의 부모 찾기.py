@@ -1,6 +1,6 @@
 import sys
 input = sys.stdin.readline
-sys.setrecursionlimit(100000)
+from collections import deque
 
 N = int(input().rstrip())
 
@@ -13,13 +13,21 @@ for i in range(1, N):
 
 parents = [0] * (N+1)
 
-def dfs(node, parent):
-    parents[node] = parent
-    for child in tree[node]:
-        if parents[child] == 0:
-            dfs(child, node)
+visited = [False] * (N+1)
 
-dfs(1, 0)
+def bfs():
+    queue = deque()
+    queue.append(1)
+    parents[1] = 0
+
+    while queue:
+        node = queue.popleft()
+        for child in tree[node]:
+            if parents[child] == 0:
+                parents[child] = node
+                queue.append(child)
+
+bfs()
 
 for i in range(2, N+1):
     print(parents[i])
