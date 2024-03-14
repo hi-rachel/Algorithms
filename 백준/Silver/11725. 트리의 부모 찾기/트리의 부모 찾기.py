@@ -13,6 +13,8 @@ for i in range(1, N):
 
 parents = [0] * (N+1)
 
+visited = [False] * (N+1)
+
 def bfs():
     queue = deque()
     queue.append(1)
