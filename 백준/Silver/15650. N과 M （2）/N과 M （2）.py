@@ -1,16 +1,8 @@
-def recur(start):
-    if len(arr) == M:
-        print(*arr)
-        return
-    
-    for i in range(start, N+1):
-        if i in arr:
-            continue
-        arr.append(i)
-        recur(i+1)
-        arr.pop()
-    
+from itertools import combinations
+
 N, M = map(int, input().split())
-arr = []
-    
-recur(1)
+
+num_list = [i for i in range(1, N+1)]
+
+for seq in combinations(num_list, M):
+    print(*seq)
