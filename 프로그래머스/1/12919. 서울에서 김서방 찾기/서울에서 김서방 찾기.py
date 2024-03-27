@@ -1,6 +1,2 @@
 def solution(seoul):
-    result = 0
-    for idx, val in enumerate(seoul):
-        if val == 'Kim':
-            result = idx
-    return f"김서방은 {result}에 있다"
+    return '김서방은 {}에 있다'.format(seoul.index("Kim"))
