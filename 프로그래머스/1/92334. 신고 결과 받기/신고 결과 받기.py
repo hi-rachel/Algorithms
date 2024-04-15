@@ -1,23 +1,24 @@
-# 각 유저는 한 번에 한 명의 유저를 신고할 수 있다. 신고 횟수에 제한은 x, 동일한 유저에 대한 신고 횟수는 1회로 처리됨
+from collections import defaultdict
 
-# k번 이상 신고된 유저는 게시판 이용이 정지되며, 해당 유저를 신고한 모든 유저에게 정지 사실을 메일로 발송
-# 유저가 신고한 모든 내용을 취합하여 마지막에 한꺼번에 게시판 이용 정지를 시키면서 정지 메일을 발송
-
-# 이용자, [이용자id, 신고한id 형태의 문자열], 
 def solution(id_list, report, k):
     answer = []
-    
-    id_set_dict = {id_: set() for id_ in id_list}
-    id_email_cnt = [0] * len(id_list)
-    
-    for i in range(len(report)):
-        reporter, black = report[i].split()
-        id_set_dict[black].add(reporter)
-    
-    for i in range(len(id_list)):
-        if len(id_set_dict[id_list[i]]) >= k:
-            for j in id_set_dict[id_list[i]]:
-                id_email_cnt[id_list.index(j)] += 1
-      
-    # id_list에 담긴 id 순서대로 각 유저가 받은 결과 메일 수를 담으면 된다.
-    return id_email_cnt
+
+    # 각 유저가 신고한 이용자들을 저장하는 딕셔너리
+    report_dict = defaultdict(set)
+    # 각 유저가 받은 신고 횟수를 저장하는 딕셔너리
+    report_count = defaultdict(int)
+
+    # 신고 기록을 파싱하여 딕셔너리에 저장
+    for r in report:
+        reporter, reported = r.split()
+        # 신고자가 이미 해당 유저를 신고한 경우를 제외하기 위해 집합을 사용
+        if reported not in report_dict[reporter]:
+            report_dict[reporter].add(reported)
+            report_count[reported] += 1
+
+    # 정지된 유저를 파악하여 해당 유저를 신고한 유저들에게 결과 메일을 전송
+    for user in id_list:
+        suspended_count = sum(1 for reported_user in report_dict[user] if report_count[reported_user] >= k)
+        answer.append(suspended_count)
+
+    return answer
