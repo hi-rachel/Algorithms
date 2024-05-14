@@ -5,8 +5,6 @@ input = sys.stdin.readline
 n = int(input())
 li = []
 
-heapq.heapify(li)
-
 for _ in range(n):
     x = int(input()) * -1
     if x == 0:
