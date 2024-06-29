@@ -3,19 +3,19 @@ input = sys.stdin.readline
 
 N = int(input())
 M = int(input())
-S = str(input())
+S = str(input().rstrip())
 
-part = 'IOI'
-
-for _ in range(N-1):
-    if part[-1] == 'I':
-        part += 'OI'
-
+left, right = 0, 0
 cnt = 0
-len_part = len(part)
 
-for i in range(0, len(S)-1):
-    if S[i:i+len_part] == part:
-        cnt += 1
+while right < M:
+    part = S[right:right+3]
+    if part == 'IOI':
+        right += 2
+        if right - left == 2 * N:
+            cnt += 1
+            left += 2
+    else:
+        left = right = right + 1
 
 print(cnt)
