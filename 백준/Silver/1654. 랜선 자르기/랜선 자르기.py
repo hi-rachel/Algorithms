@@ -1,30 +1,25 @@
 import sys
 input = sys.stdin.readline
 
-k, n = map(int, input().split())
-li = [0] * k
+K, N = map(int, input().split())
+K_list = [int(input()) for _ in range(K)]
 
-for i in range(k):
-    li[i] = int(input())
+def count_lanes(list, lane_len):
+    return sum(num // lane_len for num in list)
 
-standard = max(li)
-res = 0
+def binary_search(list):
+    start, end = 1, max(list)
+    max_len = 0
+    
+    while start <= end:
+        mid = (start + end) // 2
+        cnt = count_lanes(K_list, mid)
+        
+        if cnt >= N:
+            max_len = mid
+            start = mid + 1
+        else:
+            end = mid - 1
+    return max_len
 
-def binary(low, high):
-    if high < low:
-        return
-    global n
-    global res
-    mid = (low + high) // 2
-    temp = 0
-    for i in li:
-        temp += i // mid
-    if temp >= n:
-        res = mid
-        binary(mid + 1, high)
-    else:
-        binary(low, mid - 1)
-
-
-binary(0, standard * 2)
-print(res)
+print(binary_search(K_list))
