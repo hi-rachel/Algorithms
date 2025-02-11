@@ -1,13 +1,15 @@
+import sys
+input = sys.stdin.readline
+
 N = int(input())
+p_arr = list(map(int, input().split()))
+sorted_p_arr = sorted(p_arr)
 
-P = list(map(int, input().split()))
+time = 0
+acc = 0
 
-P.sort()
+for num in sorted_p_arr:
+    acc += num
+    time += acc
 
-result = 0
-now = 0
-for n in P:
-    now += n
-    result += now
-
-print(result)
+print(time)
