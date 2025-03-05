@@ -1,18 +1,19 @@
 function solution(numbers, target) {
-    let count = 0
-    const length = numbers.length;
+    let stack = [[0, 0]]
+    let cnt = 0
     
-    function dfs(idx, total) {
-        if (idx === length) {
+    while (stack.length > 0) {
+        let [idx, total] = stack.pop()
+        
+        if (idx === numbers.length) {
             if (total === target) {
-                count += 1
+                cnt += 1
             }
-            return
+            continue
         }
         
-        dfs(idx+1, total+numbers[idx])
-        dfs(idx+1, total-numbers[idx])
+        stack.push([idx+1, total+numbers[idx]])
+        stack.push([idx+1, total-numbers[idx]])
     }
-    dfs(0, 0)
-    return count
+    return cnt
 }
