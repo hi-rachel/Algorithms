@@ -1,13 +1,10 @@
 """
 i번째 숫자부터 j번째 숫자까지 자르고 정렬했을때,
 k번째에 있는 수를 구하려고 한다.
+
+TC: O(n log n)
+SC: O(n)
 """
 
 def solution(array, commands):
-    answer = []
-    for command in commands:
-        i, j, k = command
-        slice_arr = sorted(array[i-1:j])
-        answer.append(slice_arr[k-1])
-        
-    return answer
+    return [sorted(array[i-1:j])[k-1] for i, j, k in commands]
