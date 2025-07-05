@@ -1,13 +1,7 @@
 def solution(s):
-    stack = []
-    for bracket in s:
-        if(len(stack) == 0):
-            stack.append(bracket)
-            continue
-        if bracket == ")" and stack[-1] == "(":
-            stack.pop()
-        else:
-            stack.append(bracket)
+    answer = True
+    
+    # [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
+    print('Hello Python')
 
-    return True if len(stack) == 0 else False
-
+    return True
