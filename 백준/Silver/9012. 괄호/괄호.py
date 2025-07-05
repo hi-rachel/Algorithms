@@ -1,19 +1,24 @@
-t = int(input())
+import sys
 
-for i in range(t):
+input = sys.stdin.readline
+
+T = int(input())
+
+def is_valid_parenthesis(arr):
     stack = []
-    guess = input()
-    for c in guess:
-        if c == "(":
+    for c in arr:
+        if c == '(':
             stack.append(c)
-        elif c == ")":
-            if stack:
-                stack.pop()
-            else:
-                print("NO")
-                break
-    else:
-        if not stack:
-            print("YES")
+        elif stack:
+            stack.pop()
         else:
-            print("NO")
+            return False
+        # print(f"stack ${i}", stack, not stack)
+    # print('i', stack)
+    return not stack
+
+
+
+for _ in range(T):
+    s = list(input().rstrip())
+    print("YES") if is_valid_parenthesis(s) else print("NO")
