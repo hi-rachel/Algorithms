@@ -1,19 +1,17 @@
 def solution(n, times):
-    start = min(times)
-    end = max(times) * n
-    answer = 0
+    left = 0
+    right = max(times) * n
+    answer = right
     
-    while start <= end:
-        mid = (start + end) // 2
-        people = 0
-        for time in times:
-            people += mid//time
-            if people >= n:
-                break
-        if people >= n:
+    while left <= right:
+        mid = (left + right) // 2
+        
+        total = sum(mid // time for time in times)
+        
+        if total >= n:
             answer = mid
-            end = mid - 1
+            right = mid - 1
         else:
-            start = mid + 1
-    
+            left = mid + 1
+            
     return answer
