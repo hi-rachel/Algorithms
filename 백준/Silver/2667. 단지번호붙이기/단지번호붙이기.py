@@ -1,42 +1,36 @@
 import sys
 input = sys.stdin.readline
 
-n = int(input())
+N = int(input())
+arr = [list(map(int, input().rstrip())) for _ in range(N)]
 
-square_map = []
-
-for i in range(n):
-    square_map.append(list(map(int, input().rstrip())))
+dx = [-1, 1, 0, 0]
+dy = [0, 0, -1, 1]
 
 cnt = 0
-result = 0
 
 def dfs(x, y):
-    global result
-    if x < 0 or y < 0 or x >= n or y >= n:
-        return False
-    
-    if square_map[x][y] == 1:
-        square_map[x][y] = 0
-        dfs(x - 1, y)
-        dfs(x + 1, y)
-        dfs(x, y - 1)
-        dfs(x, y + 1)
-        result += 1
-        return True 
-    return False
+    global cnt
+    arr[x][y] = 3
+    cnt += 1
 
-house_list = []
+    for i in range(4):
+        nx = x + dx[i]
+        ny = y + dy[i]
 
-for i in range(n):
-    for j in range(n):
-        if dfs(i, j) == True:
-            cnt += 1
-            house_list.append(result)
-            result = 0
+        if 0 <= nx < N and 0 <= ny < N and arr[nx][ny] == 1:
+            dfs(nx, ny)
 
-house_list.sort()
+houses = []
 
-print(cnt)
-for i in range(len(house_list)):
-    print(house_list[i])
+for i in range(N):
+    for j in range(N):
+        if arr[i][j] == 1:
+            cnt = 0
+            dfs(i, j)
+            houses.append(cnt)
+                
+houses.sort()
+print(len(houses))
+for house in houses:
+    print(house)
